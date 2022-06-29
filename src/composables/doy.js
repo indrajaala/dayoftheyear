@@ -1,10 +1,14 @@
-const daysInAMonth = (year, month, date) => {
-    return new Date(year, month, date).getDate();
+const daysInAMonth = (year, month) => {
+    return new Date(year, month, 0).getDate();
 }
-export default function dayOfTheYear (selectedYear, selectedMonth, selectedDay) {
+export default function dayOfTheYear(selectedYear, selectedMonth, selectedDay) {
     let doy = 0;
     for (let i = 1; i <= selectedMonth; i++) {
-        doy += daysInAMonth(selectedYear, i, i === selectedMonth ? selectedDay : 0);
+        if (i === selectedMonth) {
+            doy += selectedDay
+        } else {
+            doy += daysInAMonth(selectedYear, i);
+        }
     }
     return doy;
 };
