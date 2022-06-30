@@ -1,18 +1,17 @@
 <script setup>
-import {ref, watchEffect} from 'vue'
+import {ref, computed} from 'vue'
 import doy from '../composables/doy'
 
 const today = () => {
   return new Date().toISOString().substring(0, 10).replaceAll('-', '/')
 }
 const date = ref(today());
-const dayOfTheYear = ref(0)
 
-watchEffect(() => {
+const dayOfTheYear = computed(() => {
   const [selectedYear, selectedMonth, selectedDate] = date.value.split('/');
-  dayOfTheYear.value = doy(Number(selectedYear), Number(selectedMonth), Number(selectedDate));
-
+  return doy(Number(selectedYear), Number(selectedMonth), Number(selectedDate));
 })
+
 </script>
 
 <template>
@@ -29,10 +28,11 @@ watchEffect(() => {
 </template>
 
 <style scoped>
-h1{
+h1 {
   font-size: 3rem;
 }
-p{
+
+p {
   font-size: 1.5rem;
 }
 </style>
