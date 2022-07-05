@@ -6,8 +6,9 @@ const daysInAMonth = (year, month) => {
 
 const dayOfTheYear = (date) => {
     let doy = ref(0);
-    watchEffect(() => {
-        if (date.value !== null) {
+
+    const makeDoy = () => {
+        if (date.value != null) {
             doy.value = 0;
             const [selectedYear, selectedMonth, selectedDay] = Array.from(date.value.split('/'), Number);
 
@@ -19,7 +20,10 @@ const dayOfTheYear = (date) => {
                 }
             }
         }
-    })
+    }
+
+    watchEffect(makeDoy)
+
     return doy;
 }
 
