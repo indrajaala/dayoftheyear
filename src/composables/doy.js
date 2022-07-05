@@ -4,25 +4,28 @@ const daysInAMonth = (year, month) => {
     return new Date(year, month, 0).getDate();
 }
 
+// dayOfTheYear takes input 'date' in the format 'YYYY/MM/DD'
 const dayOfTheYear = (date) => {
-    let doy = ref(0);
+    let doy = ref(null);
 
     const makeDoy = () => {
-        if (date.value != null) {
-            doy.value = 0;
-            const [selectedYear, selectedMonth, selectedDay] = Array.from(date.value.split('/'), Number);
+        doy.value = null;
+        const [selectedYear, selectedMonth, selectedDay] = Array.from(date.value.split('/'), Number);
 
-            for (let i = 1; i <= selectedMonth; i++) {
-                if (i === selectedMonth) {
-                    doy.value += selectedDay
-                } else {
-                    doy.value += daysInAMonth(selectedYear, i);
-                }
+        for (let i = 1; i <= selectedMonth; i++) {
+            if (i === selectedMonth) {
+                doy.value += selectedDay
+            } else {
+                doy.value += daysInAMonth(selectedYear, i);
             }
         }
     }
 
-    watchEffect(makeDoy)
+    watchEffect(() => {
+        if (date.value !== null) {
+            makeDoy()
+        }
+    })
 
     return doy;
 }
