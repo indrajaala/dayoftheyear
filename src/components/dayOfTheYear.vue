@@ -1,17 +1,12 @@
 <script setup>
-import {ref, computed} from 'vue'
-import doy from '../composables/doy'
+import {ref} from 'vue'
+import dayOfTheYear from '../composables/doy'
 
 const today = () => {
   return new Date().toISOString().substring(0, 10).replaceAll('-', '/')
 }
 const date = ref(today());
-
-const dayOfTheYear = computed(() => {
-  const [selectedYear, selectedMonth, selectedDate] = date.value.split('/');
-  return doy(Number(selectedYear), Number(selectedMonth), Number(selectedDate));
-})
-
+const doy = dayOfTheYear(date);
 </script>
 
 <template>
@@ -24,7 +19,7 @@ const dayOfTheYear = computed(() => {
       </div>
     </div>
   </div>
-  <p>the day of the year is <span class="doy text-blue-8 text-bold">{{ dayOfTheYear }}</span></p>
+  <p>the day of the year is <span class="doy text-blue-8 text-bold">{{ doy }}</span></p>
 </template>
 
 <style scoped>
