@@ -7,9 +7,11 @@ const daysInAMonth = (year, month) => {
 // dayOfTheYear takes input 'date' in the format 'YYYY/MM/DD'
 const dayOfTheYear = (date) => {
     let doy = ref(null);
+    let progress = ref(null);
 
     const makeDoy = () => {
         doy.value = null;
+        progress.value = null;
         const [selectedYear, selectedMonth, selectedDay] = Array.from(date.value.split('/'), Number);
 
         for (let i = 1; i <= selectedMonth; i++) {
@@ -19,6 +21,8 @@ const dayOfTheYear = (date) => {
                 doy.value += daysInAMonth(selectedYear, i);
             }
         }
+
+        progress.value = doy.value/365;
     }
 
     watchEffect(() => {
@@ -27,7 +31,7 @@ const dayOfTheYear = (date) => {
         }
     })
 
-    return doy;
+    return {doy, progress};
 }
 
 
