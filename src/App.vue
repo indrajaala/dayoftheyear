@@ -20,7 +20,7 @@ import dayOfTheYear from './components/dayOfTheYear.vue'
   /*padding-top: 20px;*/
 }
 .container{
-  padding-top: 30px;
+  padding-top:1px;
   height: 100vh;
 }
 </style>

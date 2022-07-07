@@ -55,7 +55,7 @@ p {
 }
 .progress-bar{
   width: 30%;
-  margin:auto
+  margin: auto;
 }
 
 @media only screen and (max-width: 600px) {
