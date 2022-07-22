@@ -17,13 +17,11 @@ export const useStore = defineStore('main', {
             }
         },
 
-        getters:{
+        getters: {
 
-            doy(){
-                if(this.date !== null) {
+            doy() {
                     const {doy, progress} = useDayOfTheYear(ref(this.date))
                     return {doy, progress}
-                }
             }
         }
     }
