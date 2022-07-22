@@ -5,7 +5,8 @@ const daysInAMonth = (year, month) => {
 }
 
 // dayOfTheYear takes input 'date' in the format 'YYYY/MM/DD'
-const dayOfTheYear = (date) => {
+export function useDayOfTheYear (date) {
+
     let doy = ref(null);
     let progress = ref(null);
 
@@ -35,7 +36,6 @@ const dayOfTheYear = (date) => {
 }
 
 
-export default dayOfTheYear;
 
 // console.log(daysInAMonth(currentYear,currentMonth))
 // console.log(dayOfTheYear());
