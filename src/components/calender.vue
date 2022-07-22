@@ -1,13 +1,9 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useStore } from '../stores/dayOfTheYear'
+import { date, setToday, doy} from '../stores/dayOfTheYear'
 
-const store = useStore();
-const setToday = store.setToday
-const {date, doy} = storeToRefs(store)
 setToday();
+console.log('the date is', date)
 </script>
-
 
 <template>
   <div class="selectDate">
@@ -20,7 +16,7 @@ setToday();
     <div class="q-gutter-md row items-start">
       <q-date v-model="date" class="q-mx-auto"/>
     </div>
-    <p>the day of the year is <span class="doy text-blue-8 text-bold">{{ doy.doy }}</span></p>
+    <p>the day of the year is <span class="doy text-blue-8 text-bold">{{ doy }}</span></p>
 
   </div>
 </template>

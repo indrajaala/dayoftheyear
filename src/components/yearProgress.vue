@@ -1,16 +1,13 @@
 <script setup>
-import { storeToRefs } from 'pinia'
+import { progress } from '../stores/dayOfTheYear'
 
-import { useStore } from '../stores/dayOfTheYear'
-const store = useStore();
-const {doy} = storeToRefs(store);
 </script>
 
 <template>
   <div class="q-pa-md progress-bar">
-    <q-linear-progress size="25px" :value="doy.progress.value" color="primary">
+    <q-linear-progress size="25px" :value="progress" color="primary">
       <div class="absolute-full flex flex-center">
-        <q-badge class="text-bold" color="white" text-color="primary" :label="(doy.progress.value * 100).toFixed(2) + '%'"/>
+        <q-badge class="text-bold" color="white" text-color="primary" :label="(progress * 100).toFixed(2) + '%'"/>
       </div>
     </q-linear-progress>
   </div>
