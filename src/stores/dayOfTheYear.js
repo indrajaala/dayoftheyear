@@ -1,12 +1,13 @@
 import {useDayOfTheYear} from '../composables/doy.js'
 import {ref} from 'vue'
+import {defineStore} from "pinia";
 
-const date = ref('');
-const setToday = () => {
-    date.value = new Date().toISOString().substring(0, 10).replaceAll('-', '/')
-}
-const {doy, progress} = useDayOfTheYear(date);
+export const dayOfTheYear = defineStore('dayOfTheYear', () => {
+    const date = ref('');
+    const {doy, progress} = useDayOfTheYear(date);
+    const setToday = () => {
+        date.value = new Date().toISOString().substring(0, 10).replaceAll('-', '/')
+    }
 
-export {
-    date, setToday,doy,progress
-}
+    return {date, doy, progress, setToday}
+})

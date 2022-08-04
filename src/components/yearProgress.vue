@@ -1,6 +1,8 @@
 <script setup>
-import { progress } from '../stores/dayOfTheYear'
-
+import {dayOfTheYear} from '../stores/dayOfTheYear';
+import { storeToRefs} from 'pinia';
+const store = dayOfTheYear();
+const {progress} = storeToRefs(store);
 </script>
 
 <template>

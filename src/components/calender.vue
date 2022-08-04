@@ -1,6 +1,11 @@
 <script setup>
-import { date, setToday, doy} from '../stores/dayOfTheYear'
+import {dayOfTheYear} from '../stores/dayOfTheYear';
+import {storeToRefs} from 'pinia';
 
+const store = dayOfTheYear();
+
+const {date, doy} = storeToRefs(store);
+const {setToday} = store;
 setToday();
 console.log('the date is', date)
 </script>
@@ -16,7 +21,7 @@ console.log('the date is', date)
     <div class="q-gutter-md row items-start">
       <q-date v-model="date" class="q-mx-auto"/>
     </div>
-    <p>the day of the year is <span class="doy text-blue-8 text-bold">{{ doy }}</span></p>
+    <p class="q-mt-md">the day of the year is <span class="doy text-blue-8 text-bold">{{ doy }}</span></p>
 
   </div>
 </template>
@@ -26,6 +31,7 @@ console.log('the date is', date)
 p {
   font-size: 1.5rem;
 }
+
 .refresh-button {
   margin-top: -5px;
   margin-left: 100px;
